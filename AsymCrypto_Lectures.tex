@@ -5,7 +5,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[russian, ukrainian]{babel}
 
-\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd}  % Математические дополнения от AMS
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd,mathtools}  % Математические дополнения от AMS
 \usepackage{geometry}                               % Для последующего задания полей
 \usepackage{indentfirst}                            % Красная строка
 \usepackage[singlelinecheck=off,center]{caption}    % Многострочные подписи
@@ -54,7 +54,7 @@
 \renewcommand{\labelitemi}{\normalfont\bfseries{--}} 
 
 %% Номера формул (Спасибо Ване Свичкарёву)
-%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
 %% -- не ставится пакет mathtools, пока закомментировано
 
 %%% Колонтитулы %%%
