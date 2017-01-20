@@ -1,104 +1,12 @@
-\documentclass[12pt]{report}
-\usepackage[pdftex]{graphicx}
-% Comment the following line to NOT allow the usage of umlauts
-\usepackage[utf8]{inputenc}
-\usepackage[russian, ukrainian]{babel}
-
-\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd}  % Математические дополнения от AMS
-\usepackage{geometry}                               % Для последующего задания полей
-\usepackage{indentfirst}                            % Красная строка
-\usepackage[singlelinecheck=off,center]{caption}    % Многострочные подписи
-\usepackage{soul}                                   % Поддержка переносоустойчивых подчёркиваний и зачёркиваний
-\usepackage{icomma}                                 % Запятая в десятичных дробях
-\usepackage{tocloft}
-\usepackage{setspace}
-\usepackage{fancyhdr}
-\usepackage{euscript}                               % Красивый шрифт \EuScript
-%%% Цвета %%%
-\usepackage[usenames]{color}
-\usepackage{color}
-\usepackage{colortbl}
-
-\geometry{a4paper,top=2cm,bottom=2cm,left=2.5cm,right=1cm}
-\linespread{1.0}                    % Одинарный интервал
-\sloppy                             % Избавляемся от переполнений
-\clubpenalty=10000                  % Запрещаем разрыв страницы после первой строки абзаца
-\widowpenalty=10000                 % Запрещаем разрыв страницы после последней строки абзаца
-
-%%% Шаблон %%%
-\newcommand{\todo}[1]{\textcolor{red}{#1}}
-% Команда \todo{Текст} вставляет текст красного цвета
-
-% Используем дефис для ненумерованных списков (ГОСТ 2.105-95, 4.1.7)
-\renewcommand{\labelitemi}{\normalfont\bfseries{--}} 
-
-%%% Колонтитулы %%%
-% Порядковый номер страницы печатают на середине верхнего поля страницы (ГОСТ Р 7.0.11-2011, 5.3.8)
-\makeatletter
-\let\ps@plain\ps@fancy              % Подчиняем первые страницы каждой главы общим правилам
-\makeatother
-\pagestyle{fancy}                   % Меняем стиль оформления страниц
-\fancyhf{}                          % Очищаем текущие значения
-\fancyhead[R]{\thepage}             % Печатаем номер страницы в правом краю верхнего поля
-\renewcommand{\headrulewidth}{0pt}  % Убираем разделительную линию
-
-%переопределение символа пустого множества
-\let\oldemptyset\emptyset
-\let\emptyset\varnothing
-
-%определение команд для частых символов
-\newcommand*{\binsp}[1]{\ensuremath \left\{0, 1\right\}^{#1}}       % {0, 1}^m
-\newcommand*{\xor}{\ensuremath \oplus}                              % \xor = (+)
-\newcommand*{\GF}[1]{\ensuremath \mathbb F_{#1}}                    % F_n
-\newcommand*{\GFgroup}[1]{\ensuremath \mathbb F^{*}_{#1}}           % F^*_n
-\newcommand*{\Zring}[1]{\ensuremath \mathbb Z_{#1}}                 % Z_n
-\newcommand*{\Zgroup}[1]{\ensuremath \mathbb Z^{*}_{#1}}            % Z^*_n
-\newcommand*{\Jset}[1]{\ensuremath \mathbb J_{#1}}                  % J_n
-\newcommand*{\Qset}[1]{\ensuremath \mathbb Q_{#1}}                  % Q_n
-\newcommand*{\PQset}[1]{\ensuremath \widetilde{\mathbb Q}_{#1}}     % Q~_n
-\newcommand*{\Legendre}[2]{\ensuremath \left(\frac{#1}{#2}\right)}  % символ Лежандра/Якоби
-
-\DeclareMathOperator{\ord}{ord}         % фунция ord
-
-%определение команды для переноса знаков операции при разрыве строки
-\newcommand*{\hm}[1]{#1\nobreak\discretionary{} {\hbox{$\mathsurround=0pt #1$}}{}}
-%использовать как: $a \hm+ b \hm+ c$; при переносе на новую строку знак будет продублирован
-
-%определение окружений типа "теорема"
-% Теоремы, леммы, утверждения, следствия: курсивным текстом, нумерация по главе (вида 1.2)
-\theoremstyle{plain}
-\newtheorem{theorem}{Теорема}[chapter]
-\newtheorem{claim}{Твердження}[chapter]
-\newtheorem{lemma}{Лема}[chapter]
-\newtheorem{corollary}{Наслідок}[chapter]
-
-% Определения, алгоритмы, замечания и задачи: прямым текстом, нумерация по главе
-% (замечания не нумеруются)
-% Доказательства (окружение "proof") относятся сюда же.
-\theoremstyle{definition}
-\newtheorem{mydef}{Визначення}[chapter]
-\newtheorem{algorithm}{Алгоритм}[chapter]
-\newtheorem{problem}{Задача}[chapter]
-\theoremstyle{remark}
-\newtheorem*{remark}{\textbf{Зауваження}}
-\renewcommand{\proofname}{\textbf{Доведення}}
-
-%команда для английских названий
-\newcommand{\engl}[1]{(англ. \emph{#1})}
-% команда \engl{text} вставляет в текст фразу "(англ. __text__)".
-% Сделано для дублирования терминов на английском
-
-
-% Start the document
-\begin{document}
-
-\chapter{Назви розділів сенсей вставить сам}
-
-%\section{Що таке електронні вибори?}
+\section{Електронні вибори}
 %
 %Пока кандидат на кат
+\begin{flushright}
+\emph{(Автор: Михайло Столович. Не редагувалось)}
+\par \emph{(Версія від 21 січня 2017 р.)}
+\end{flushright}
 
-\section{Приклади}
+\subsection{Приклади}
 
 Наразі вже декілька розвинутих країн практикують електронні вибори. Тобто, держава дає можливість
 людині проголосувати за свого кандидата не виходячи з дому.
@@ -115,7 +23,7 @@
 Вона була визнана успішною. 
 Естонія стала першою країною світу, де стало можливим проголосувати через Інтернет. 
 
-\section{Вимоги до електронного голосування}
+\subsection{Вимоги до електронного голосування}
 Задля того, щоб побудувати систему електронного голосування, спочатку треба визначитися з вимогами, які
 ця система повинна задовольняти:
 
@@ -133,7 +41,7 @@
 Як ми бачимо, виставленні вимоги до системи, десь співпадають, а десь перевищують можливості звичайного
 голосування. Проте давайте розглянемо, як усю цю купу вимог реалізувати на практиці.
 
-\section{Схема електронного голосування}
+\subsection{Схема електронного голосування}
 
 Зазвичай організацією виборів займається якась державна структура.
 В електронному голосуванні також маємо структуру, яка відповідає за організацію 
@@ -155,7 +63,7 @@
 
 У довіреного лиця також є своя RSA із відкритим ключем $(m,e)$ і таємним ключем $d$.
 
-\section{Процедура голосування виборців}
+\subsection{Процедура голосування виборців}
 
 Нехай в нас існує $r$ можливих варіантів, за кого голосувати. $r-1$ кандидат і один варіант "Проти всіх".
 
@@ -203,7 +111,7 @@
 Після того, як усі охочі виборці зроблять свій вибір, вибори закриваються, і ми переходимо до етапу 
 підрахунку голосів.
 
-\section{Підрахунок голосів $\Sigma$ -ою}
+\subsection{Підрахунок голосів $\Sigma$ -ою}
 
 Спочатку, довірча особа $D$ перевіряє цифровий підпис кожного виборця $A_i, i=\overline{1,N'}$:
 \begin{enumerate}
@@ -234,7 +142,7 @@
 
 $N-N'$ - це кулькість не голосувавших виборців.
 
-\section{Перевірка результатів голосування}
+\subsection{Перевірка результатів голосування}
 
 \begin{enumerate}
     \item Кожен виборець має змогу впевнетися, що його голос був зарахований по таблиці результатів.
@@ -260,13 +168,3 @@ $N-N'$ - це кулькість не голосувавших виборців.
     \ mod \ m  = \prod_{i=1}^N (b_i*q_i)^e\ mod\ m = (\prod_{i=1}^{N'} C_i) \ mod \ m\]
 
 \end{enumerate}
-
-
-
-
-
-
-
-
-\end{document}
-
