@@ -1,0 +1,149 @@
+%\begin{document}
+
+\section{Протоколи доведення з нульовим пізнанням(zero - knowledge protocol).}
+\begin{flushright}
+\emph{(Автор: Юля Старкова. Редагувалось(Грубіян))}
+\par \emph{(Версія від 21 січня 2017 р.)}
+\end{flushright}
+
+Протоколи з нульовим пізнанням є одним з основних способів безпечної автентифікації користувачів.\\
+Сторони протоколу ДНП:\\
+$\bold{A}$ - Сторона що доводить\\
+$\bold{B}$ - Сторона що перевіряє
+
+Ціль(задача) протоколу ДНП(не прив`язуючись до певного алгоритму):
+
+$\bold{A}$ має секрет та доводить $\bold{B}$, що знає секрет, але так, що В про секрет, в результаті протоколу, не дізнається ніякої інформації\\
+Подивимось на конкретні протоколи:\\
+
+\subsection{Протокол ДнП на основі квадратичних лишків}
+
+$\bold{A}$ має число $n = pq$,  $p\neq q$ великі прості \textsl{p} і \textsl{q} - секрет $\bold{A}$, а \textsl{n} \glqq індентифікатор\grqq $\bold{A}$\\
+Ціль протоколу ДнП: $\bold{A}$ доводить $\bold{B}$, що знає \textsl{p} та \textsl{q} , при цьому \textsl{B} ніякої інформації про \textsl{p} і \textsl{q} не отримує.
+
+\begin{center} 
+КРОКИ ПРОТОКОЛУ
+\end{center}
+
+\begin{enumerate}
+\item $\bold{B}$: генерує випадковий $x, (x,n) = 1$; 
+обраховує $  x^4\bmod{n} = y \longrightarrow \bold{A}$, з вимогою знайти квадратний корінь з $y$, який є квадратичним лишком.
+\item $\bold{A}$: Знаходить корінь $y^{1/2}\bmod n=\{z_1, z_2, z_3, z_4\} $, знаючи та використовуючи $p$ і $q$. З  чотирьох коренів, він обирає квадратичний лишок (знаючи $p$ і $q$ згідно з критерієм Ойлера, обраховуємо символ Лежандра) $z^* \longrightarrow \bold{B}$
+\item $\bold{B}$  перевіряє: $z^* = x^2\bmod n$. Якщо \glqqтак\grqq, то $\bold{B}$ доведено, що $\bold{A}$ знає $p$ та $q$\\
+Подивимось, яку інформацію отримає $\bold{B}$: він отримав $z^*$, але оскільки $x$ і $x^2\bmod n$ $\bold{B}$ знав раніше, то про $p$ і $q$ $\bold{B}$ ніякої інформації не отримує.
+\end{enumerate}
+
+\begin{center}
+\textbf{Атака на протокол}
+\end{center}
+
+\begin{enumerate}
+\item $\bold{B}$: генерує випадковий $x$, $(x,n)=1$.\\
+Обраховує $ x^2\bmod{n} = y$ (порушення протоколу)
+\item $\bold{A}$: знаходить $y^{1/2}\bmod n=\{z_1, z_2, z_3, z_4\} $ та квадратичний лишок  $z^* \longrightarrow \bold{B}$.
+\item $\bold{B}$: перевіряє  $z^* = x^2\bmod n$.
+Випадки:
+\begin{enumerate}[label=\alph*)]
+\item $z^* = x \Rightarrow \bold{A}$ доводить, що знає $p$ і $q$ , але $\bold{B}$ ніякої інформації про $p$ і $q$ не отримує.
+\item $z^*\ne x, z^* = -x \Rightarrow \bold{A}$ доводить $\bold{B}$, що знає $p$ і $q$, але $\bold{B}$ інформації про $p$ і $q$ не отримує.
+\item $z^* = x, z^* \ne -x$ ($\bold{A} обраховував вірно$); Тоді $\bold{B}$  має два кореня з $y$ такі, що $z^* \ne \pm x\bmod n$ що $gcd(z^* + x, n)= p$ або $q$.
+\par ! Ймовірність випадку c (якщо число $n$ - число Блюма) дорівнює $1/2$.\\
+Цей протокол не використовується, оскільки його секрктність базується на \glqq порядності\grqq $\bold{B}$. \\
+\end{enumerate}
+\end{enumerate}
+
+\subsection{Протокол ДнП на базі квадратичності}
+
+\par Задача: $\bold{A}$ знає пару $(x, y)$ таку, що $y = x^2\bmod n$, $n = pq$, $p\ne q$ - великі прості. При цьому $\bold{A}$ не знає $p$ і $q$. $\bold{A}$ \glqq оголошує\grqq $y$, $n$  та доводить $\bold{B}$, що знає $x$ - один з коренів $y^{1/2}\bmod n$ таким чином, що ніякої інформації про $x$ $\bold{B}$ не отримує.\\
+
+\begin{center} 
+КРОКИ ПРОТОКОЛУ
+\end{center}
+
+\begin{enumerate}
+
+\item $\bold{A}$: генерує випадкове $v, (v,n) = 1$, лишок $u = v^2\bmod n, n\longrightarrow \bold{B}$
+\item $\bold{B}$ генерує випадковий біт. 
+\begin{equation*}
+b = 
+	\begin{cases}
+		1, &\text{з ймовірністю 1/2}\\
+		0, &\text{з ймовірністю 1/2}
+	\end{cases}
+\end{equation*}
+\begin{center}
+$b \longrightarrow \bold{A}$
+\end{center}
+\item $\bold{A}$: Якщо $b = 1$, то $v\longrightarrow \bold{B}$; Якщо $b = 0$, то $vx = w\longrightarrow \bold{B}$ 
+\item $\bold{B}$: Якщо $b = 1$, то перевіряємо $v^2 = u\bmod n$ ; Якщо $b = 0$, то перевіряємо $w^2 = uy\bmod n $\\
+Кроки 1 - 4 перевіряються $m$ разів $m < \log n$. Якщо на всіх $m$ ітераціях відповіді \glqqтак\grqq, тоді $\bold{A}$ довів $\bold{B}$ , що знає такий $x$, що $x^2\bmod n = y$.Імовірність обману $\leqslant 2^{-m}$. Якщо, хоча б на одній ітерації отимуємо відповідь  \glqqні\grqq, тоді $\bold{A}$ не довів $\bold{B}$, що знає $x$.\\
+\par Розглянемо можливість обману, коли $\bold{A}$ не знає $x$, $x^2 = y\bmod n$(ймовірність обману на кожній ітерації - 1/2)
+\begin{enumerate}[label=\alph*)]
+\item $U\longrightarrow \bold{B}, U = V^2\bmod n$. Тоді з імовірністю 1/2 обман буде виявлено при $b = 1$.
+\item $U\longrightarrow \bold{B}, U = V^2\bmod n$, $y$ - не квадратичний лишок, тоді з ймовірністю 1/2 при $b = 0$ обман буде виявлено, оскільки $w^2\ne uy\bmod n$ .
+\item $U\longrightarrow \bold{B}, U = V^2\bmod n$. $y$ - квадратичний лишок, тоді з ймовірністю 1/2 при $b = 0$ обман буде виявлено на 4-му кроці, оскільки $w^2\ne uy\bmod n$ .
+\end{enumerate}
+\end{enumerate}
+
+\subsection{Протокол підкидання монети по телефону(схема Блюма-Мікалі)}
+\parСторони протоколу:\\
+$\bold{A}$ та $\bold{B}$ спілкуються по каналу зв`язку\\
+Задача: генерувати випадковий біт таким чином, щоб ні $\bold{A}$ ні $\bold{B}$ не вплинули на результат. Випадковим біт:
+\begin{equation*}
+\gamma = 
+	\begin{cases}
+		1, &\text{з ймовірністю 1/2}\\
+		0, &\text{з ймовірністю 1/2}
+	\end{cases}
+\end{equation*}\\
+
+
+\begin{center}
+КРОКИ ПРОТОКОЛУ
+\end{center}
+\begin{enumerate}
+\item $\bold{A}$: Обирає випадковий $k$ - ключ. Генерує випадкове $\alpha \in \{0,1\}$, шифрує, та надсилає $E_k(\alpha)\longrightarrow \bold{B}$.
+\item $\bold{B}$: генерує випадковий біт $b\in\{0,1\}$, $b\longrightarrow\bold{A}$
+
+\item $\bold{A}: (\alpha, k)\longrightarrow\bold{B}$.
+\item $\bold{B}$: перевіряє $\alpha = D_k(E_k(\alpha))$. 
+\item $\bold{A}$ і $\bold{B}$: спільний секрет: $\gamma = \alpha\xor b$.
+\end{enumerate}
+\begin{center}
+\textbf{Генерація ключів за допомогою підкидання монети}
+\end{center}
+\parРеальним застосуванням цього протоколу є генерація сеансового ключа. Протокол підкидання монети дозволяє $\bold{A}$ і $\bold{B}$ створити випадковий сеансовий ключ таким чином, що ніхто з них не має можливості влинути на те, яким він буде.
+
+\subsection{Протоколи на основі RSA}
+Нехай $\bold{A}$ має RSA з відкритим ключем $(n, e)$ секретний ключ $d$.
+\begin{center}
+КРОКИ ПРОТОКОЛУ
+\end{center}
+\begin{enumerate}
+
+\item $\bold{A}$: Генеруємо випадковий $x\in\{1, 2,\ldots, n-1\}$ (однакова кількість парних та непарних). Обраховуємо $x\bmod 2 = \alpha\in\{0,1\}$. $x^e\bmod n = y\longrightarrow \bold{B}$.
+\item $\bold{B}$: Обираємо випадковий біт:
+\begin{equation*}
+\beta = 
+	\begin{cases}
+		1, &\text{з ймовірністю 1/2}\\
+		0, &\text{з ймовірністю 1/2}
+	\end{cases}
+\end{equation*}\\
+\item $\bold{A}: (n, e), x, \alpha \longrightarrow \bold{B}$.
+\item $\bold{B}$: Перевіряє $(n, e)$ - відкритий ключ $\bold{A}$(надсилає зашифроване повідомлення або перевіряє у центрі сертифікації, наприклад).
+\begin{center}
+$x^e\bmod n = y, \alpha = x\bmod 2$
+\end{center}
+\item $\bold{A}$ і $\bold{B}$: Якщо результат перевірки задовільняє сторони протоколу, то $\gamma = \alpha \xor \beta$, $\alpha$ - випадковий біт.
+\begin{equation*}
+\gamma = 
+	\begin{cases}
+		1, &\text{з імовірністю 1/2}\\
+		0, &\text{з імовірністю 1/2}
+	\end{cases}
+\end{equation*}
+\end{enumerate}
+
+%\end{document}
+

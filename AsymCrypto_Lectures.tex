@@ -5,7 +5,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[russian, ukrainian]{babel}
 
-\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd,mathtools}  % Математические дополнения от AMS
+\usepackage{amsthm,amsmath,amssymb,amscd,mathtools}  % Математические дополнения от AMS
 \usepackage{geometry}                               % Для последующего задания полей
 \usepackage{indentfirst}                            % Красная строка
 \usepackage[singlelinecheck=off,center]{caption}    % Многострочные подписи
@@ -21,7 +21,9 @@
 \usepackage{colortbl}
 
 %Маша Коляда
-\usepackage{ucs} 
+\usepackage{ucs}
+ 
+\usepackage{enumitem}
 
 %Ваня Свичкарёв
 \usepackage{bbold}      % без этого, какой-то плохой символ индикатора (Ваня Свичкарёв)
@@ -89,7 +91,8 @@
 %определение команды для переноса знаков операции
 \newcommand*{\hm}[1]{#1\nobreak\discretionary{} {\hbox{$\mathsurround=0pt #1$}}{}}
 %использовать как: $a \hm+ b \hm+ c$; при переносе на новую строку знак будет продублирован
-
+%Юля
+\newcommand{\RomanNumeralCaps}[1]{\MakeUppercase{\romannumeral #1}}
 %Ваня Свичкарёв
 \newcommand*\mc[1]{\multicolumn{1}{c}{#1}}
 \newcommand{\raisehdr}[1][.5\normalbaselineskip]{\raisebox{#1}}
@@ -153,18 +156,13 @@
 
 \input{lecture_11.tex}          % 11
 \input{lecture_12.tex}          % 12
-%\input{}       % 13
-%\input{}       % 14
-%\input{}       % 15
+\input{lecture_13.tex}       % 13
+\input{lecture_14.tex}       % 14
+\input{lecture_15.tex}       % 15
 %\input{}       % 16
 %\input{}       % 17
 %\input{}       % 18
-\section{Lecture 13}
-\section{Lecture 14}
-\section{Lecture 15}
 \section{Lecture 16}
-\section{Lecture 17}
-\section{Lecture 18}
 
 
 
