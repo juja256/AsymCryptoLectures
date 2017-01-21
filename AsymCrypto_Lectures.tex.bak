@@ -1,0 +1,172 @@
+\documentclass[12pt]{report}
+% Uncomment the following line to allow the usage of graphics (.png, .jpg)
+\usepackage[pdftex]{graphicx}
+% Comment the following line to NOT allow the usage of umlauts
+\usepackage[utf8]{inputenc}
+\usepackage[russian, ukrainian]{babel}
+
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd,mathtools}  % Математические дополнения от AMS
+\usepackage{geometry}                               % Для последующего задания полей
+\usepackage{indentfirst}                            % Красная строка
+\usepackage[singlelinecheck=off,center]{caption}    % Многострочные подписи
+\usepackage{soul}                                   % Поддержка переносоустойчивых подчёркиваний и зачёркиваний
+\usepackage{icomma}                                 % Запятая в десятичных дробях
+\usepackage{tocloft}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{euscript}   %ещё один красивый шрифт \EuScript
+%%% Цвета %%%
+\usepackage[usenames]{color}
+\usepackage{color}
+\usepackage{colortbl}
+
+%Маша Коляда
+\usepackage{ucs} 
+
+%Ваня Свичкарёв
+\usepackage{bbold}      % без этого, какой-то плохой символ индикатора (Ваня Свичкарёв)
+\usepackage{cmap}       % поиск в PDF
+\usepackage{mathtext}   % русские буквы в формулах
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+%\usepackage{wrapfig} % Обтекание рисунков и таблиц текстом
+\usepackage{wrapfig,booktabs}
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+\usepackage{diagbox} %таблица с наклонным разделителем
+
+
+\geometry{a4paper,top=2cm,bottom=2cm,left=2.5cm,right=1cm}
+\linespread{1.0}                    % Одинарный интервал
+\sloppy                             % Избавляемся от переполнений
+\clubpenalty=10000                  % Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000                 % Запрещаем разрыв страницы после последней строки абзаца
+
+%%% Оглавление %%%
+%\renewcommand{\cftchapdotsep}{\cftdotsep}
+
+%%% Шаблон %%%
+\newcommand{\todo}[1]{\textcolor{red}{#1}}
+
+% Используем дефис для ненумерованных списков (ГОСТ 2.105-95, 4.1.7)
+\renewcommand{\labelitemi}{\normalfont\bfseries{--}} 
+
+%% Номера формул (Спасибо Ване Свичкарёву)
+\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+%% -- не ставится пакет mathtools, пока закомментировано
+
+%%% Колонтитулы %%%
+% Порядковый номер страницы печатают на середине верхнего поля страницы (ГОСТ Р 7.0.11-2011, 5.3.8)
+\makeatletter
+\let\ps@plain\ps@fancy              % Подчиняем первые страницы каждой главы общим правилам
+\makeatother
+\pagestyle{fancy}                   % Меняем стиль оформления страниц
+\fancyhf{}                          % Очищаем текущие значения
+\fancyfoot[R]{\thepage}             % Печатаем номер страницы по центру нижнего поля
+\renewcommand{\headrulewidth}{0pt}  % Убираем разделительную линию
+
+%переопределение символа пустого множества
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+%определение команд для частых символов
+\newcommand*{\binsp}[1]{\ensuremath \left\{0, 1\right\}^{#1}}       % {0, 1}^m
+\newcommand*{\xor}{\ensuremath \oplus}                              % \xor = (+)
+\newcommand*{\GF}[1]{\ensuremath \mathbb F_{#1}}                    % F_n
+\newcommand*{\GFgroup}[1]{\ensuremath \mathbb F^{*}_{#1}}           % F^*_n
+\newcommand*{\Zring}[1]{\ensuremath \mathbb Z_{#1}}                 % Z_n
+\newcommand*{\Zgroup}[1]{\ensuremath \mathbb Z^{*}_{#1}}            % Z^*_n
+\newcommand*{\Jset}[1]{\ensuremath \mathbb J_{#1}}                  % J_n
+\newcommand*{\Qset}[1]{\ensuremath \mathbb Q_{#1}}                  % Q_n
+\newcommand*{\PQset}[1]{\ensuremath \widetilde{\mathbb Q}_{#1}}     % Q~_n
+\newcommand*{\cyclic}[1]{\ensuremath \left\langle {#1} \right\rangle}                  % <g>
+\newcommand*{\Legendre}[2]{\ensuremath \left(\frac{#1}{#2}\right)}  % символ Лежандра/Якоби
+\newcommand*{\Ind}[1]{\ensuremath \mathbb 1_{#1}}                   % 1_n
+\DeclareMathOperator{\ord}{ord}
+
+%определение команды для переноса знаков операции
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{} {\hbox{$\mathsurround=0pt #1$}}{}}
+%использовать как: $a \hm+ b \hm+ c$; при переносе на новую строку знак будет продублирован
+
+%Ваня Свичкарёв
+\newcommand*\mc[1]{\multicolumn{1}{c}{#1}}
+\newcommand{\raisehdr}[1][.5\normalbaselineskip]{\raisebox{#1}}
+
+%определение окружений типа "теорема"
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[chapter]
+\newtheorem{claim}{Твердження}[chapter]
+\newtheorem{lemma}{Лема}[chapter]
+\newtheorem{corollary}{Наслідок}[chapter]
+\theoremstyle{definition}
+\newtheorem{mydef}{Визначення}[chapter]
+\newtheorem{algorithm}{Алгоритм}[chapter]
+\newtheorem{problem}{Задача}[chapter]
+\newtheorem{example}{Приклад}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{\textbf{Зауваження}}
+\renewcommand{\proofname}{\textbf{Доведення}}
+
+%команда для английских названий
+\newcommand{\engl}[1]{(англ. \emph{#1})}
+
+
+%Делаем титульный лист
+\title{\textsc{Асиметричні криптосистеми та протоколи} \\ Конспект лекцій}
+\author{Сергій Яковлєв та група ФІ-33}
+\date{\today}
+
+% Start the document
+\begin{document}
+
+\maketitle
+\tableofcontents
+\clearpage
+
+\chapter*{Передмова}
+\addcontentsline{toc}{section}{Передмова}
+
+Лекції жодним чином не редагувались (окрім правок, необхідних для компіляції) та наразі надаються as is.
+
+\chapter{Важкооборотні функції та важкооборотні функції із секретом}
+
+\input{lecture_01.tex}          % 01
+\input{lecture_02.tex}          % 02
+\input{lecture_03.tex}          % 03
+\input{lecture_04.tex}          % 04
+
+\chapter{Криптографічні геш-функції та схеми цифрового підпису}
+
+\input{lecture_05.tex}          % 05
+\input{lecture_06.tex}          % 06
+\input{lecture_07.tex}          % 07
+\input{lecture_08.tex}          % 08
+
+\chapter{Криптосистеми на еліптичних кривих}
+
+\input{lecture_09.tex}          % 09
+\input{lecture_10.tex}          % 10
+
+\chapter{Асиметричні криптографічні протоколи}
+
+\input{lecture_11.tex}          % 11
+\input{lecture_12.tex}          % 12
+%\input{}       % 13
+%\input{}       % 14
+%\input{}       % 15
+%\input{}       % 16
+%\input{}       % 17
+%\input{}       % 18
+\section{Lecture 13}
+\section{Lecture 14}
+\section{Lecture 15}
+\section{Lecture 16}
+\section{Lecture 17}
+\section{Lecture 18}
+
+
+
+\end{document}
+
