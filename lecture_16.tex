@@ -1,0 +1,99 @@
+
+
+\section{Алгоритм ймовірнісного шифрування RSA}
+\begin{flushright}
+\emph{(Автор: Андрій Турчин. (Трохи редагувалось))}
+\par \emph{(Версія від 22 січня 2017 р.)}
+\end{flushright}
+
+\mydef Псевдоквадратом a по mod n, де n - складне число, називається таке a $\in$\ $\mathbb{Z}$\ , що (a,n) = 1, а символ Якобі ($\frac{a}{n}$)\ = 1, при цьому a не являється квадратним лишком   
+
+Нехай n = p$\cdot$q, p$\neq$q - прості. Позначимо $\mathbb{G}_{n}$\ - множину тих a:\{a $\in$\ $\mathbb{G}^{*}_{n}$ : ($\frac{a}{n}$)\ = 1\}
+
+${\mathbb{G}_{n}}$\ = ${\mathbb{Q}_{n}}$\ $\cup$ $\tilde{\mathbb{Q}_{n}}$,  ${\mathbb{Q}_{n}}$\ $\cap$ $\tilde{\mathbb{Q}_{n}}$ = 0, ${\mathbb{Q}_{n}}$\ - множина кв. лишків, $\tilde{\mathbb{Q}_{n}}$ - множина псевдоквадратів. При цьому |${\mathbb{Q}_{n}}$| = |$\tilde{\mathbb{Q}_{n}}$| 
+
+\subsection{Побудова системи ймовірнісного шифруванняна псевдоквадратах користувача А}
+
+\begin{enumerate}
+\item Вибираємо великі прості p $\neq$ q. Відповідно обчислюємо n = p$\cdot$q;
+
+\item Знаходимо псевдоквадрат a наступним чином:
+
+a) \ вибираємо квадратний нелишок $a_{1}$ по mod(p) або ж обчислюють ($\frac{a_{1}}{p}$)\ = -1, 
+
+або $a_{1}^{\frac{p-1}{2}}$ = -1
+
+b) \ вибираємо $a_{2}$ нелишок по mod(q) ($\frac{a_{2}}{p}$)\ = -1
+
+c) \ знаходимо розвязок системи:
+\begin{equation*} 
+\begin{cases}
+x =\ a_{1} \bmod p \\
+x =\ a_{2} \bmod p
+\end{cases}
+\end{equation*}
+При цьому ($\frac{a}{n}$)\ = ($\frac{a}{p}$)($\frac{a}{q}$)\ = ($\frac{a_{1}}{p}$)($\frac{a_{2}}{q}$)\ = (-1)(-1) = 1 і a не являється квадратичним лишком
+
+\item  Оголошуємо відкритий ключ (n,a) для зашифрування повыдомлення для А, при цьому (p,q) - це секретний ключ А для розшифрування.
+\end{enumerate}
+
+\textbf{Зашифрування:}
+
+ВТ довжиною M < n, M - містить користувачів B
+\begin{enumerate}
+\item Вибираємо послідовність випадкових чисел $r_{i}$: 1<$r_{i}$<n i = $\overline{\rm 1,t}	$ 
+
+\item $\forall i = \overline{\rm 1,t}$ обчислюють 
+\begin{equation*}
+С_{i}= 
+\begin{cases}
+r_{i}^{2} \bmod n, &\text{якщо $m_{i}$ = 0}\\
+a r_{i}^{2} \bmod n, &\text{якщо $m_{i}$ = 1}
+\end{cases}
+\end{equation*}
+
+\item Формуємо ШТ: C = $C_{1}C_{2}...C_{t}$, де 1<$C_{i}$<n 
+\end{enumerate}
+
+\textbf{Розшифрування}
+
+$\forall i = \overline{\rm 1,t}$ провіряє:
+\begin{equation*}
+m_{i}= 
+\begin{cases}
+	0, &\text{якщо $C_{i}$ - кв. лишок}\\
+	1, &\text{якщо $C_{i}$ - кв. нелишок}
+\end{cases}
+\end{equation*}
+Звідси, M = $m_{1}m_{2}...m_{t}$
+
+\subsection {Алгоритм ймовірнісного шифрування за допомогою RSA}
+
+Нехай користувач А має RSA p відкритим ключем  (n,e) і секретним ключем d
+
+\textbf{Зашифрування ВТ користувачем користувачем B для користувача А:} 
+
+\begin{enumerate}
+	\item Уявляємо M = $m_{1}m_{2}...m_{t}$, $m_{i} \in {0,1}$, M<n ;
+	\item Генеруэмо  t незалежних випадкових чисел $r_{i}$ $r_{i} \in {1,2,...,n-1}$
+	При цьому 
+\begin{equation*}
+	r_{i}= 
+	\begin{cases}
+	&\text{парне, якщо $m_{i}$ = 0}\\
+	&\text{непарне, якщо $m_{i}$ = 1}
+	\end{cases}
+\end{equation*}
+
+	\item Обчислюємо для i = $\overline{\rm 1,t}$: $C_{i} = r_{i}^{e}\bmod n$;
+	\item Складаємо С = $C_{1}C_{2}...C_{t}$ $\rightarrow A$;
+\end{enumerate} 
+
+\textbf{Розшифрування ШТ користувачем А:}
+\begin{enumerate} 
+\item Обчислити для i = $\overline{\rm 1,t}\ m_{i} = (c_{i}^{d}\bmod n)\bmod 2$
+
+\item Складаємо ВТ M = $m_{1}m_{2}...m_{t}$
+\end{enumerate}
+Cтійкість схеми основана на стійкості RSA.
+
