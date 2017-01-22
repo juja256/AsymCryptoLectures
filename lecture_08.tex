@@ -1,7 +1,7 @@
 \section{Системи шифрування та цифровий підпис Рабіна}
 \begin{flushright}
-\emph{(Автор: Маша Коляда. Редагувалось(Свічкарьов))}
-\par \emph{(Версія від 19 січня 2017 р.)}
+\emph{(Автор: Маша Коляда. Редагувалось)}
+\par \emph{(Версія від 22 січня 2017 р.)}
 \end{flushright}
 
 Дана система шифрування та цифрового підпису використовує односторонню функцію Рабіна : $y=x^2 \bmod n$, де $n=p \cdot q$, $p\ne q$ -- великі прості числа.
@@ -33,7 +33,7 @@
         \item За китайською теоремою про лишки знаходить 4 корені:
         \[
          C^{\frac{1}{2}}\bmod n={(\pm \beta_p)\cdot q \cdot q^{-1}\bmod p 
-         + \beta_q \cdot p \cdot p^{-1}\bmod q}.
+         \pm \beta_q \cdot p \cdot p^{-1}\bmod q}.
         \]
         Отримує  ${M_1,M_2,M_3,M_4}$, після чого обирає один з цих коренів за змістом.   
 \end{enumerate}
@@ -125,11 +125,11 @@
 \ Якщо n--число Блюма, то в средньому, цей пункт виконується на 4-ій спробі.
     \item       Обчислює $H^{\frac{1}{2}}\bmod n$:
     \begin{enumerate}
-    \item       Використовуючи $p$ обчислює: $\pm \beta_p=C^{\frac{1}{2}}\bmod p$
-    \item Використовуючи $q$ обчислює: $\pm \beta_q=C^{\frac{1}{2}}\bmod q$
+    \item       Використовуючи $p$ обчислює: $\pm \beta_p=H^{\frac{1}{2}}\bmod p$
+    \item Використовуючи $q$ обчислює: $\pm \beta_q=H^{\frac{1}{2}}\bmod q$
     \item   За китайською теоремою про лишки знаходить 4 корені: 
 \[    
-    C^{\frac{1}{2}}\bmod n={\pm \beta_p \cdot q \cdot q^{-1}\bmod p + ( \beta_q) \cdot p \cdot p^{-1}\bmod q} \rightarrow M_1,M_2,M_3,M_4
+    C^{\frac{1}{2}}\bmod n={\pm \beta_p \cdot q \cdot q^{-1}\bmod p \pm ( \beta_q) \cdot p \cdot p^{-1}\bmod q} \rightarrow M_1,M_2,M_3,M_4
 \]
 \end{enumerate}
    \item Обирає один з коренів $\beta$, та формує підпис ($M,R, \beta$)

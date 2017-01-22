@@ -66,7 +66,7 @@
 \makeatother
 \pagestyle{fancy}                   % Меняем стиль оформления страниц
 \fancyhf{}                          % Очищаем текущие значения
-\fancyfoot[R]{\thepage}             % Печатаем номер страницы по центру нижнего поля
+\fancyfoot[R]{\thepage}             % Печатаем номер страницы в правом углу нижнего поля
 \renewcommand{\headrulewidth}{0pt}  % Убираем разделительную линию
 
 %переопределение символа пустого множества
@@ -86,6 +86,9 @@
 \newcommand*{\cyclic}[1]{\ensuremath \left\langle {#1} \right\rangle}                  % <g>
 \newcommand*{\Legendre}[2]{\ensuremath \left(\frac{#1}{#2}\right)}  % символ Лежандра/Якоби
 \newcommand*{\Ind}[1]{\ensuremath \mathbb 1_{#1}}                   % 1_n
+\usepackage{xspace}
+\newcommand*{\notdivisible}{\not\mathop{\raisebox{-1pt}{\vdots\space}}}  
+\newcommand*{\divisible}{\mathop{\raisebox{-1pt}{\vdots}}} %  опустит знак троеточия чуть ниже 
 \DeclareMathOperator{\ord}{ord}
 
 %определение команды для переноса знаков операции
@@ -135,31 +138,31 @@
 
 \chapter{Важкооборотні функції та важкооборотні функції із секретом}
 
-\input{lecture_01.tex}          % 01
-\input{lecture_02.tex}          % 02
-\input{lecture_03.tex}          % 03
-\input{lecture_04.tex}          % 04
+%\input{lecture_01.tex}          % 01
+%\input{lecture_02.tex}          % 02
+%\input{lecture_03.tex}          % 03
+%\input{lecture_04.tex}          % 04
 
 \chapter{Криптографічні геш-функції та схеми цифрового підпису}
 
-\input{lecture_05.tex}          % 05
-\input{lecture_06.tex}          % 06
-\input{lecture_07.tex}          % 07
-\input{lecture_08.tex}          % 08
+%\input{lecture_05.tex}          % 05
+%\input{lecture_06.tex}          % 06
+%\input{lecture_07.tex}          % 07
+%\input{lecture_08.tex}          % 08
 
 \chapter{Криптосистеми на еліптичних кривих}
 
-\input{lecture_09.tex}          % 09
-\input{lecture_10.tex}          % 10
+%\input{lecture_09.tex}          % 09
+%\input{lecture_10.tex}          % 10
 
 \chapter{Асиметричні криптографічні протоколи}
 
-\input{lecture_11.tex}          % 11
+%\input{lecture_11.tex}          % 11
 \input{lecture_12.tex}          % 12
-\input{lecture_13.tex}       % 13
-\input{lecture_14.tex}       % 14
-\input{lecture_15.tex}       % 15
-\input{lecture_16.tex}       % 16
+%\input{lecture_13.tex}       % 13
+%\input{lecture_14.tex}       % 14
+%\input{lecture_15.tex}       % 15
+%\input{lecture_16.tex}       % 16
 %\input{}       % 17
 %\input{}       % 18
 
