@@ -26,7 +26,8 @@
 \usepackage{enumitem}
 
 %Ваня Свичкарёв
-\usepackage{bbold}      % без этого, какой-то плохой символ индикатора (Ваня Свичкарёв)
+%\usepackage{bbold}      % без этого, какой-то плохой символ индикатора (Ваня Свичкарёв)
+% отмена: в bbold'e некрасивые буквы. Решено просто поменять символ индикатора
 \usepackage{cmap}       % поиск в PDF
 \usepackage{mathtext}   % русские буквы в формулах
 %%% Работа с картинками
@@ -39,6 +40,8 @@
 \usepackage{multirow} % Слияние строк в таблице
 \usepackage{diagbox} %таблица с наклонным разделителем
 
+%Макс Хоменко
+\usepackage{tikz}
 
 \geometry{a4paper,top=2cm,bottom=2cm,left=2.5cm,right=1cm}
 \linespread{1.0}                    % Одинарный интервал
@@ -85,7 +88,7 @@
 \newcommand*{\PQset}[1]{\ensuremath \widetilde{\mathbb Q}_{#1}}     % Q~_n
 \newcommand*{\cyclic}[1]{\ensuremath \left\langle {#1} \right\rangle}                  % <g>
 \newcommand*{\Legendre}[2]{\ensuremath \left(\frac{#1}{#2}\right)}  % символ Лежандра/Якоби
-\newcommand*{\Ind}[1]{\ensuremath \mathbb 1_{#1}}                   % 1_n
+\newcommand*{\Ind}[1]{\ensuremath \mathbb I_{#1}}                   % 1_n (индикатор)
 \usepackage{xspace}
 \newcommand*{\notdivisible}{\not\mathop{\raisebox{-1pt}{\vdots\space}}}  
 \newcommand*{\divisible}{\mathop{\raisebox{-1pt}{\vdots}}} %  опустит знак троеточия чуть ниже 
@@ -162,6 +165,7 @@
 \input{lecture_13.tex}       % 13
 \input{lecture_14.tex}       % 14
 \input{lecture_15.tex}       % 15
+\input{lecture_15_2.tex}     % 15 Дополнительная лекция
 \input{lecture_16.tex}       % 16
 %\input{}       % 17
 %\input{}       % 18
